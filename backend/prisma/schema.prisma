@@ -1,0 +1,34 @@
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id              String @db.VarChar(36)  @id @default(uuid())
+  name            String
+  email           String @unique
+  hashedPassword  String
+  tasks Task[] // Relation field: A User can have many Tasks
+}
+
+enum Status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model Task {
+  id           Int     @id @default(autoincrement())
+  user         User    @relation(fields: [userId], references: [id]) // Relation field
+  userId       String  // Foreign key
+  title        String
+  description  String?
+  status       Status  @default(PENDING)
+  createdAt    DateTime @default(now())
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}

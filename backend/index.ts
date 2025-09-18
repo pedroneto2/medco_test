@@ -2,8 +2,8 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import publicRouter from './public_routes';
-import privateRouter from './private_routes';
+import publicRouter from './publicRoutes';
+import privateRouter from './privateRoutes';
 
 export const prisma = new PrismaClient();
 export const app = express();

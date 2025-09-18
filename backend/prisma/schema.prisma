@@ -19,13 +19,14 @@ enum Status {
 }
 
 model Task {
-  id           Int     @id @default(autoincrement())
-  user         User    @relation(fields: [userId], references: [id]) // Relation field
-  userId       String  // Foreign key
-  title        String
-  description  String?
-  status       Status  @default(PENDING)
-  createdAt    DateTime @default(now())
+  id              Int     @id @default(autoincrement())
+  user            User    @relation(fields: [userId], references: [id]) // Relation field
+  userId          String  // Foreign key
+  title           String
+  description     String  @db.Text
+  status          Status  @default(PENDING)
+  expiration_date DateTime
+  createdAt       DateTime @default(now())
 }
 
 generator client {

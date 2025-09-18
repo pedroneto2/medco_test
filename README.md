@@ -95,14 +95,14 @@ do comando
 docker logs -n 100 -f backend
 ```
 
-e esperar até que apareça a seguinte mensagem no terminal:
+e esperar até que apareça a seguinte mensagem nos logs:
 ```
 Backend listening on port 3007
 ```
 
 ## 🚀 Executando a Aplicação
 
-O backend estará disponível em `http://localhost:3000`
+O backend estará disponível em `http://localhost:3007`
 
 O frontend estará disponível em `http://localhost:3008`
 

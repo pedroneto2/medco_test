@@ -23,18 +23,25 @@ export function PublicRoute({ children }: { children: JSX.Element }) {
   return user ? <Navigate to="/tasks" /> : children;
 }
 
+// Export the routes component separately for testing
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
+      <Route path="/tasks/new" element={<PrivateRoute><CreateTask /></PrivateRoute>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path ="/"        element={<PublicRoute><Home /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/login"    element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/tasks"    element={<PrivateRoute><Tasks /></PrivateRoute>} />
-          <Route path="/tasks/new" element={<PrivateRoute><CreateTask /></PrivateRoute>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <AppRoutes />
       </BrowserRouter>
     </AuthProvider>
   );

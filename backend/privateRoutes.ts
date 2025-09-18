@@ -14,7 +14,7 @@ privateRouter.use((req: Request, res: Response, next) =>
 privateRouter.get("/me", (req: Request, res: Response) => {
   res.json({ 
     userId: (req as any).user.userId, 
-    name: (req as any).user.name, 
+    name: (req as any).user.name,
     email: (req as any).user.email 
   });
 });
